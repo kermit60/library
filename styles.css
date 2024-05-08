@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+div {
+    border: solid black 2px;
+}
+
+.header {
+    box-shadow: 0 0 0.75;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 150px 1fr 150px;
+    padding: 25px;
+    font-size: 21px;
+    gap: 10px;
+    
+}
+
+.card {
+    min-height: 100px;
+    
+}
