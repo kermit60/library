@@ -1,6 +1,5 @@
 const myLibrary = [];
 
-
 // constructor for a book object
 function Book(title, author, pages, haveRead) {
     this.title = title;
@@ -17,9 +16,11 @@ function Book(title, author, pages, haveRead) {
 };
 
 // After filling out the form, we get all the values add to library
-let addBookToLibrary = function() {
+let addBookToLibrary = function(book) {
+    myLibrary.push(book);
+    // create the card element and add it into main
 
-}
+};
 
 let book1 = new Book('Atomic Habits', 'James Clear', 300, false);
 let book2 = new Book('Eloquent Javscript', 'Marjin Haverbeke', 450, true);
@@ -31,3 +32,49 @@ console.log(Object.getPrototypeOf(book1));
 myLibrary.push(book1);
 myLibrary.push(book2);
 console.log(myLibrary);
+
+
+const addCardButton = document.getElementById("add-card");
+const dialog = document.getElementById("dialog");
+const bookForm = dialog.querySelector("#book-form");
+
+// pop-up form buttons
+const cancelButton = dialog.querySelector("#cancel-button");
+const saveButton = dialog.querySelector("#save-button");
+
+// input form values
+let title = dialog.querySelector("#title");
+let author = dialog.querySelector("#author");
+let pages = dialog.querySelector("#pages");
+let hasRead = dialog.querySelector("#has-read");
+let haveRead = 
+
+addCardButton.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    dialog.close();
+});
+
+// fix hasRead true and false
+saveButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(title.value);
+    console.log(author.value);
+    console.log(pages.value);
+    console.log(hasRead);
+    if (hasRead.checked) {
+        hasRead.removeAttribute('checked');
+        hasRead = true;
+    } else {
+        hasRead = false;
+    }
+    console.log(hasRead);
+
+    bookForm.reset();
+    
+    dialog.close();
+});
+
