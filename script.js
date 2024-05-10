@@ -16,11 +16,17 @@ function Book(title, author, pages, haveRead) {
 };
 
 // After filling out the form, we get all the values add to library
-let addBookToLibrary = function(book) {
+const addBookToLibrary = function(book) {
     myLibrary.push(book);
     // create the card element and add it into main
 
 };
+
+const deleteBookFromLibrary = function(book) {
+    
+};
+
+
 
 let book1 = new Book('Atomic Habits', 'James Clear', 300, false);
 let book2 = new Book('Eloquent Javscript', 'Marjin Haverbeke', 450, true);
@@ -47,7 +53,7 @@ let title = dialog.querySelector("#title");
 let author = dialog.querySelector("#author");
 let pages = dialog.querySelector("#pages");
 let hasRead = dialog.querySelector("#has-read");
-let haveRead = 
+let haveRead = false;
 
 addCardButton.addEventListener('click', () => {
     dialog.showModal();
@@ -65,16 +71,22 @@ saveButton.addEventListener('click', (e) => {
     console.log(author.value);
     console.log(pages.value);
     console.log(hasRead);
+    // if checkbox is checked
     if (hasRead.checked) {
         hasRead.removeAttribute('checked');
-        hasRead = true;
-    } else {
-        hasRead = false;
+        haveRead = true;
     }
-    console.log(hasRead);
-
+    
+    const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
+    addBookToLibrary(newBook);
+    console.log(newBook);
+    
+    // resetting the form
+    hasRead.removeAttribute('checked');
+    haveRead = false;
     bookForm.reset();
     
     dialog.close();
 });
+
 
