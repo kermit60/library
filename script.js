@@ -79,6 +79,7 @@ saveButton.addEventListener('click', (e) => {
     
     const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
     addBookToLibrary(newBook);
+    createBookCard(newBook);
     console.log(newBook);
     
     // resetting the form
@@ -90,3 +91,43 @@ saveButton.addEventListener('click', (e) => {
 });
 
 
+const renderCards = (library) => {
+    library.map((book) => {
+        createBookCard(book);
+    });
+};
+
+const main = document.getElementById("main");
+// Creates new bookcard and shows onto the screen
+const createBookCard = (book) => {
+    // creating the elements in card
+    const card = document.createElement("div");
+    card.className = "card";
+    const title = document.createElement("h4");
+    title.textContent = book.title;
+    const author = document.createElement("h5");
+    author.textContent = book.author;
+    const pages = document.createElement("p");
+    pages.textContent = book.pages;
+    const readButton = document.createElement("button");
+    readButton.textContent = "Read";
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    readButton.className = "read";
+    deleteButton.className = "delete";
+    const footer = document.createElement("div");
+    footer.className = "card-footer";
+    footer.textContent = book.haveRead ? "Read" : "Not read";
+
+    // appending components in card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(readButton);
+    card.appendChild(deleteButton);
+    card.appendChild(footer);
+
+    main.appendChild(card);
+};
+
+renderCards(myLibrary);
