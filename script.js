@@ -1,4 +1,9 @@
-const myLibrary = [];
+// global variables;
+let bookCount = 0;
+let myLibrary = [];
+const main = document.getElementById("main");
+
+// fix the delete button and make ids for the books
 
 // constructor for a book object
 function Book(title, author, pages, haveRead) {
@@ -6,6 +11,7 @@ function Book(title, author, pages, haveRead) {
     this.author = author;
     this.pages = pages;
     this.haveRead = haveRead;
+
     // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
     this.info = () => {
         if (haveRead) {
@@ -17,12 +23,29 @@ function Book(title, author, pages, haveRead) {
 
 // After filling out the form, we get all the values add to library
 const addBookToLibrary = function(book) {
+    bookCount++;
     myLibrary.push(book);
-    // create the card element and add it into main
-
+    console.log(myLibrary);
 };
 
-const deleteBookFromLibrary = function(book) {
+
+const deleteBookFromLibrary = function(card) {
+    // delete from library array
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (i === parseInt(card.dataset.indexNumber)) {
+            myLibrary.splice(i, 1);
+            break;
+        }
+    }
+    console.log(myLibrary);
+    // remove book card from screen
+    main.removeChild(card);
+    console.log("main children length " + main.children.length);
+    // change all the new indexes for cards
+    for (let i = 0; i < main.children.length; i++) {
+        main.children[i].setAttribute("data-index-number", i);
+        console.log(main.children[i])
+    }
     
 };
 
@@ -33,10 +56,8 @@ let book2 = new Book('Eloquent Javscript', 'Marjin Haverbeke', 450, true);
 console.log(book1.info());
 console.log(book2.info());
 
-console.log(Object.getPrototypeOf(book1));
-
-myLibrary.push(book1);
-myLibrary.push(book2);
+addBookToLibrary(book1);
+addBookToLibrary(book2);
 console.log(myLibrary);
 
 
@@ -78,9 +99,10 @@ saveButton.addEventListener('click', (e) => {
     }
     
     const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
+    // incremenet book count
     addBookToLibrary(newBook);
     createBookCard(newBook);
-    console.log(newBook);
+    console.log("created new Book" + newBook);
     
     // resetting the form
     hasRead.removeAttribute('checked');
@@ -97,12 +119,13 @@ const renderCards = (library) => {
     });
 };
 
-const main = document.getElementById("main");
+
 // Creates new bookcard and shows onto the screen
 const createBookCard = (book) => {
     // creating the elements in card
     const card = document.createElement("div");
     card.className = "card";
+    card.setAttribute("data-index-number", myLibrary.indexOf(book));
     const title = document.createElement("h4");
     title.textContent = book.title;
     const author = document.createElement("h5");
@@ -115,6 +138,16 @@ const createBookCard = (book) => {
     deleteButton.textContent = "Delete";
     readButton.className = "read";
     deleteButton.className = "delete";
+
+    // delete buttons clicked functionalities
+    deleteButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parent = e.target.closest(".card");
+        deleteBookFromLibrary(parent);
+    });
+
+
+
     const footer = document.createElement("div");
     footer.className = "card-footer";
     footer.textContent = book.haveRead ? "Read" : "Not read";
@@ -128,6 +161,8 @@ const createBookCard = (book) => {
     card.appendChild(footer);
 
     main.appendChild(card);
+
 };
+
 
 renderCards(myLibrary);
