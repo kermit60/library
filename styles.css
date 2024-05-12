@@ -8,7 +8,7 @@
 }
 
 div {
-    border: solid black 1px;
+    /* border: solid black 1px; */
 }
 
 .header {
@@ -33,6 +33,7 @@ dialog {
     justify-self: center;
     margin-top: 25px;
     padding: 20px;
+    border: 2px;
     border-radius: 8px;
     box-shadow: 0 0 0.1 black;
     min-width: 500px;
@@ -51,15 +52,27 @@ dialog {
     border: none;
     color: white;
     font-size: 15px;
+    cursor: pointer;
+
+
+}
+
+#save-button {
+    background-color: #465fff;
+}
+
+#save-button:hover {
+    background-color: #4242fe;
 }
 
 #cancel-button {
     background-color: rgb(95, 94, 94);
 }
 
-#save-button {
-    background-color: #4242fe;
+#cancel-button:hover {
+    background-color: rgb(78, 78, 78);
 }
+
 
 .dialog-header {
     font-size: 25px;
@@ -75,7 +88,7 @@ dialog {
 
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #book-form {
@@ -87,5 +100,13 @@ dialog::backdrop {
 .group {
     display: grid;
     grid-template-rows: 25px 25px;
+}
+
+.group > input {
+    font-size: 15px;
+    min-height: 30px;
+    padding: 7px;
+    border-radius: 4px;
+    border: 1px solid rgb(161, 161, 161)
 }
 
