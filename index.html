@@ -19,7 +19,7 @@
         <div class="footer">Footer</div>
     </div>
     <dialog id="dialog">
-        <h4>Add book</h4>
+        <h4 class="dialog-header">Add book</h4>
         <form id="book-form" action="">
             <div class="group">
                 <label for="title">Title</label>
@@ -33,16 +33,15 @@
                 <label for="pages">Pages</label>
                 <input type="number" name="pages" id="pages">
             </div>
-            <div class="group">
+            <div class="">
                 <input type="checkbox" id="has-read" name="has-read" >
                 <label for="has-read">Read</label>
             </div>
-            
-            <div>
-                <button id="cancel-button">Cancel</button>
-                <button id="save-button">Save</button>
-            </div>
         </form>
+        <div class="dialog-footer">
+            <button id="cancel-button">Cancel</button>
+            <button id="save-button">Save</button>
+        </div>
     </dialog>
 </body>
 </html>

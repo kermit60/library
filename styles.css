@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 div {
-    border: solid black 2px;
+    border: solid black 1px;
 }
 
 .header {
@@ -26,3 +28,64 @@ div {
     min-height: 100px;
 
 }
+
+dialog {
+    justify-self: center;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 0.1 black;
+    min-width: 500px;
+}
+
+.dialog-header, 
+.dialog-footer {
+    margin: 10px 0;
+    min-height: 50px;
+}
+
+#cancel-button, 
+#save-button {
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-size: 15px;
+}
+
+#cancel-button {
+    background-color: rgb(95, 94, 94);
+}
+
+#save-button {
+    background-color: #4242fe;
+}
+
+.dialog-header {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+}
+
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#book-form {
+    display: grid;
+    grid-template-rows: repeat(2, 50px) 1fr 50;
+    gap: 15px;
+}
+
+.group {
+    display: grid;
+    grid-template-rows: 25px 25px;
+}
+
