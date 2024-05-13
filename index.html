@@ -10,12 +10,27 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">LIBRARY</div>
+            <div class="logo">Library</div>
+            <!-- book stats for number of pages read, books read etc -->
+            <div class="book-stats"></div>
         </div>
-        <button id="add-card">
-            + Add Book
+        <button id="add-card-button">
+            <h3>+ Add Book</h3>
         </button>
-        <div id="main"></div>
+        <div id="main">
+            <div class="card">
+                <div class="card-body">
+                    <h4>title</h4>
+                    <h5>asdasda</h5>
+                    <p>400 pages</p>
+                    <div>
+                        <button class="read">Read</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="card-footer">Read</div>
+            </div>
+        </div>
         <div class="footer">Footer</div>
     </div>
     <dialog id="dialog">
@@ -43,5 +58,6 @@
             <button id="save-button">Save</button>
         </div>
     </dialog>
+    
 </body>
 </html>

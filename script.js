@@ -61,7 +61,7 @@ addBookToLibrary(book2);
 console.log(myLibrary);
 
 
-const addCardButton = document.getElementById("add-card");
+const addCardButton = document.getElementById("add-card-button");
 const dialog = document.getElementById("dialog");
 const bookForm = dialog.querySelector("#book-form");
 
@@ -126,6 +126,8 @@ const createBookCard = (book) => {
     const card = document.createElement("div");
     card.className = "card";
     card.setAttribute("data-index-number", myLibrary.indexOf(book));
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body";
     const title = document.createElement("h4");
     title.textContent = book.title;
     const author = document.createElement("h5");
@@ -146,18 +148,20 @@ const createBookCard = (book) => {
         deleteBookFromLibrary(parent);
     });
 
-
+    const grouper = document.createElement('div');
 
     const footer = document.createElement("div");
     footer.className = "card-footer";
     footer.textContent = book.haveRead ? "Read" : "Not read";
 
     // appending components in card
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(readButton);
-    card.appendChild(deleteButton);
+    cardBody.appendChild(title);
+    cardBody.appendChild(author);
+    cardBody.appendChild(pages);
+    grouper.append(readButton);
+    grouper.append(deleteButton);
+    cardBody.append(grouper);
+    card.appendChild(cardBody)
     card.appendChild(footer);
 
     main.appendChild(card);
