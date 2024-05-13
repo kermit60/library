@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/* form n */
+
 * {
     padding: 0;
     margin: 0;
@@ -8,7 +10,7 @@
 }
 
 div {
-    /* border: solid black 1px; */
+    border: solid black 1px;
 }
 
 body {
@@ -60,7 +62,7 @@ body {
 
 .card-body {
     display: grid;
-    grid-template-rows: reoeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 10px;
     padding: 15px;
 }
@@ -74,7 +76,12 @@ body {
 }
 
 .card-body > p {
-    font-size: 15px;;
+    font-size: 15px;
+}
+
+.card-body > div {
+    display: flex;
+    gap: 10px;
 }
 
 .read,
@@ -205,3 +212,26 @@ dialog::backdrop {
     border: 1px solid rgb(161, 161, 161);
 }
 
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    font-size: 18px;
+    height: 60px;
+    background-color: bisque;
+}
+
+.fa-github {
+    margin-left: 8px;
+    font-size: 24px;
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+  
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+}
