@@ -19,6 +19,10 @@ function Book(title, author, pages, haveRead) {
         }
         return `${this.title} by ${this.author}, ${pages} pages, not read yet`;
     };
+
+    this.changeRead = () => {
+        this.haveRead = !this.haveRead;
+    };
 };
 
 // After filling out the form, we get all the values add to library
@@ -136,6 +140,7 @@ const createBookCard = (book) => {
     pages.textContent = book.pages;
     const readButton = document.createElement("button");
     readButton.textContent = "Read";
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     readButton.className = "read";
@@ -152,7 +157,22 @@ const createBookCard = (book) => {
 
     const footer = document.createElement("div");
     footer.className = "card-footer";
-    footer.textContent = book.haveRead ? "Read" : "Not read";
+    footer.textContent = book.haveRead ? "Read" : "Not Read";
+
+    readButton.addEventListener('click',  e => {
+        e.preventDefault();
+        const parent = e.target.closest(".card");
+        // get the card footer
+        const footer = parent.querySelector(".card-footer");
+        console.log(parent);
+        console.log(footer);
+        // get the book
+        let books = myLibrary.find((book, index) => index === parseInt(parent.dataset.indexNumber));
+        books.changeRead();
+        footer.textContent = books.haveRead ? "Read" : "Not Read";
+        
+    });
+
 
     // appending components in card
     cardBody.appendChild(title);
