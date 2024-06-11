@@ -3,27 +3,27 @@ let bookCount = 0;
 let myLibrary = [];
 const main = document.getElementById("main");
 
-// fix the delete button and make ids for the books
-
 // constructor for a book object
-function Book(title, author, pages, haveRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.haveRead = haveRead;
+class Book {
+    constructor(title, author, pages, haveRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.haveRead = haveRead;
+    }
 
-    // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
-    this.info = () => {
-        if (haveRead) {
-            return `${this.title} by ${this.author}, ${pages} pages, read`;
-        }
-        return `${this.title} by ${this.author}, ${pages} pages, not read yet`;
-    };
-
-    this.changeRead = () => {
+    changeRead() {
         this.haveRead = !this.haveRead;
-    };
-};
+    }
+
+    info() {
+        if (this.haveRead) {
+            return `${this.title} by ${this.author}, ${this.pages} pages, read`;
+        }
+        return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
+    
+    }
+}
 
 // After filling out the form, we get all the values add to library
 const addBookToLibrary = function(book) {
@@ -67,18 +67,20 @@ console.log(myLibrary);
 
 const addCardButton = document.getElementById("add-card-button");
 const dialog = document.getElementById("dialog");
-const bookForm = dialog.querySelector("#book-form");
+const bookForm = document.querySelector("#book-form");
+
 
 // pop-up form buttons
-const cancelButton = dialog.querySelector("#cancel-button");
-const saveButton = dialog.querySelector("#save-button");
+const cancelButton = document.querySelector("#cancel-button");
+const saveButton = document.querySelector("#save-button");
 
 // input form values
-let title = dialog.querySelector("#title");
-let author = dialog.querySelector("#author");
-let pages = dialog.querySelector("#pages");
-let hasRead = dialog.querySelector("#has-read");
+let title = document.querySelector("#title");
+let author = document.querySelector("#author");
+let pages = document.querySelector("#pages");
+let hasRead = document.querySelector("#has-read");
 let haveRead = false;
+
 
 addCardButton.addEventListener('click', () => {
     dialog.showModal();
@@ -89,9 +91,9 @@ cancelButton.addEventListener('click', (e) => {
     dialog.close();
 });
 
-// fix hasRead true and false
+// Fix and add saveButton validation
 saveButton.addEventListener('click', (e) => {
-    e.preventDefault();
+    
     console.log(title.value);
     console.log(author.value);
     console.log(pages.value);
@@ -101,7 +103,6 @@ saveButton.addEventListener('click', (e) => {
         hasRead.removeAttribute('checked');
         haveRead = true;
     }
-    
     const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
     // incremenet book count
     addBookToLibrary(newBook);
@@ -112,7 +113,7 @@ saveButton.addEventListener('click', (e) => {
     hasRead.removeAttribute('checked');
     haveRead = false;
     bookForm.reset();
-    
+    // e.preventDefault();
     dialog.close();
 });
 
