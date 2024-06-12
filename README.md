@@ -11,7 +11,7 @@ A book collection manager for adding and removing your favourite titles
 Add and remove book titles to keep track of them
 
 ## **Installation**
-> A live deployment of [`tic-tac-toe`](https://kermit60.github.io/library/) is available on GitHub pages, check it out without the need of installation.
+> A live deployment of [`library`](https://kermit60.github.io/library/) is available on GitHub pages, check it out without the need of installation.
 
 If you want to run the application and/or edit its source code on locally on your computer, follow the steps below:
 
