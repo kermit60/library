@@ -236,3 +236,21 @@ dialog::backdrop {
 .fa-github:hover {
     transform: rotate(360deg) scale(1.2);
 }
+
+.error {
+    color: red;
+    margin-top: 7px;
+    font-weight: 500;
+}
+
+input {
+    
+}
+
+input:invalid {
+    border-color: rgb(221, 40, 40);
+}
+
+input:valid {
+    border-color: rgb(19, 180, 19);
+}

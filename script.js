@@ -191,3 +191,42 @@ const createBookCard = (book) => {
 
 
 renderCards(myLibrary);
+
+const errors = (() => {
+    // bookForm
+    const errorList = document.querySelectorAll('.link');
+
+    for (const list of errorList) {
+        list.addEventListener("input", (e) => {
+            console.log(e.target.parentElement.childNodes[5]);
+            const errorMessage = e.target.parentElement.childNodes[5];
+            if (list.validity.valid) {
+                errorMessage.textContent = '';
+            } else {
+                showError(list, errorMessage);
+            }
+        });
+    }
+
+    const showError = (link, errorInput) => {
+        if (link.validity.valueMissing) {
+            errorInput.textContent = "Input should be at least 1 character long";
+        } else if (link.validity.typeMismatch) {
+            errorInput.textContent = "You need to match the to the correct type";
+        } else if (link.validity.tooShort) {
+            errorInput.textContent = "You can do something";
+        }
+    }
+
+    bookForm.addEventListener('submit', (e) => {
+        for (const link of errorList) {
+            const errorMessage = link.parentElement.childNodes[5];
+            console.log(errorMessage);
+            if (!link.validity.valid) {
+                showError(link, errorMessage);
+                e.preventDefault();
+            }
+        }
+    });
+
+})();
