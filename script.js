@@ -83,6 +83,7 @@ let haveRead = false;
 
 
 addCardButton.addEventListener('click', () => {
+    bookForm.reset();
     dialog.showModal();
 });
 
@@ -98,23 +99,22 @@ saveButton.addEventListener('click', (e) => {
     console.log(author.value);
     console.log(pages.value);
     console.log(hasRead);
-    // if checkbox is checked
-    if (hasRead.checked) {
+    if (title.value && author.value && pages.value) {
+        // if checkbox is checked
+        if (hasRead.checked) {
+            hasRead.removeAttribute('checked');
+            haveRead = true;
+        }
+        const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
+        // incremenet book count
+        addBookToLibrary(newBook);
+        createBookCard(newBook);
+        console.log("created new Book" + newBook);
+        
+        // resetting the form
         hasRead.removeAttribute('checked');
-        haveRead = true;
+        haveRead = false;
     }
-    const newBook = new Book(title.value, author.value, parseInt(pages.value), haveRead);
-    // incremenet book count
-    addBookToLibrary(newBook);
-    createBookCard(newBook);
-    console.log("created new Book" + newBook);
-    
-    // resetting the form
-    hasRead.removeAttribute('checked');
-    haveRead = false;
-    bookForm.reset();
-    // e.preventDefault();
-    dialog.close();
 });
 
 
